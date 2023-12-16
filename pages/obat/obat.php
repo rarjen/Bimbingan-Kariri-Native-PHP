@@ -78,7 +78,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-
                                 <?php
                                 include 'koneksi.php';
                                 $query = "SELECT * FROM obat";
@@ -100,9 +99,7 @@
                                     ";
                                 }
                                 mysqli_close($mysqli);
-
                                 ?>
-
                             </tbody>
                         </table>
                     </div>

@@ -4,7 +4,7 @@ include("../../koneksi.php");
 $id = $_GET['id']; //mengambil id user yang ingin diubah
 
 //menampilkan user berdasarkan id
-$data = mysqli_query($mysqli, "select * from obat where id = '$id'");
+$data = mysqli_query($mysqli, "SELECT * FROM obat WHERE id = '$id'");
 $row = mysqli_fetch_assoc($data);
 ?>
 
