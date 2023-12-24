@@ -30,6 +30,10 @@
     </div>
 </div>
 
+<div id="seg-modal">
+
+</div>
+
 
 <!-- Content Header (Page header) -->
 <div class="content-header">
@@ -64,8 +68,6 @@
                         </div>
                     </div>
                     <!-- /.card-header -->
-
-
                     <div class="card-body table-responsive p-0">
                         <table class="table table-hover text-nowrap">
                             <thead>
@@ -82,25 +84,25 @@
                                 include 'koneksi.php';
                                 $query = "SELECT * FROM obat";
                                 $result = mysqli_query($mysqli, $query);
-
+                                $no = 1;
                                 while ($row = mysqli_fetch_assoc($result)) {
-                                    echo
-                                    "
+                                ?>
                                     <tr>
-                                        <td>{$row['id']}</td>
-                                        <td>{$row['nama_obat']}</td>
-                                        <td>{$row['kemasan']}</td>
-                                        <td>{$row['harga']}</td>
+                                        <td><?php echo $no++; ?></td>
+                                        <td><?php echo $row['nama_obat']; ?></td>
+                                        <td><?php echo $row['kemasan'] ?></td>
+                                        <td><?php echo $row['harga'] ?></td>
                                         <td>
-                                            <button type='button' class='btn btn-sm btn-warning edit-btn' data-obatid='{$row['id']}'>Edit</button>
-                                            <a href='pages/obat/hapusObat.php?id={$row['id']}' class='btn btn-sm btn-danger' onclick='return confirm(\"Anda yakin ingin hapus?\");'>Hapus</a>
+                                            <button type='button' class='btn btn-sm btn-warning edit-btn' data-obatid='<?php echo $row['id']; ?>'>Edit</button>
+                                            <a href='pages/obat/hapusObat.php?id=<?php echo $row['id']; ?>' class='btn btn-sm btn-danger' onclick='return confirm("Anda yakin ingin hapus?");'>Hapus</a>
                                         </td>
                                     </tr>
-                                    ";
-                                }
+                                <?php } // Add this closing bracket
                                 mysqli_close($mysqli);
                                 ?>
                             </tbody>
+                            <script>
+                            </script>
                         </table>
                     </div>
                     <!-- /.card-body -->
