@@ -30,7 +30,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <?php include("components/sidebar.php") ?>
 
         <!-- Content Wrapper. Contains page content -->
-        <?php include("components/contentwrapper.php") ?>
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <?php include("pages/obat/obat.php") ?>
+            </div>
+            <!-- /.content -->
+        </div>
 
         <!-- /.content-wrapper -->
 
@@ -51,6 +57,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="assets/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="assets/admin/dist/js/adminlte.min.js"></script>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('.edit-btn').on('click', function() {
+                var dataId = $(this).data('obatid'); // obatid didapat dari id yang dikirimkan melalui tombol edit
+                $('#seg-modal').load(`pages/obat/editObat.php?id=${dataId}`, function() {
+                    $('#myModal').modal('show');
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
