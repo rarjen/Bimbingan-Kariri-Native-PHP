@@ -1,5 +1,5 @@
 <?php
-include '../../koneksi.php';
+include '../../../koneksi.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Ambil nilai dari form
@@ -8,12 +8,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $harga = $_POST["harga"];
 
     // Query untuk menambahkan data obat ke dalam tabel
-    $query = "INSERT INTO obat (nama_obat, kemasan, harga) VALUES ('$nama_obat', '$kemasan', '$harga')";
+    $query = "INSERT INTO obat (nama_obat, kemasan, harga) VALUES (?, ?, ?)";
 
+    $stmt = mysqli_prepare($mysqli, $query);
+
+    // Bind parameter
+    mysqli_stmt_bind_param($stmt, "ssi", $nama_obat, $kemasan, $harga);
 
     // if ($koneksi->query($query) === TRUE) {
     // Eksekusi query
-    if (mysqli_query($mysqli, $query)) {
+    if (mysqli_stmt_execute($stmt)) {
         // Jika berhasil, redirect kembali ke halaman utama atau sesuaikan dengan kebutuhan Anda
         // header("Location: ../../index.php");
         // exit();
@@ -26,6 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Jika terjadi kesalahan, tampilkan pesan error
         echo "Error: " . $query . "<br>" . mysqli_error($mysqli);
     }
+    mysqli_stmt_close($stmt);
 }
 
 // Tutup koneksi
