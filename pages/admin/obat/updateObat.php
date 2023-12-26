@@ -10,13 +10,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Query untuk melakukan update data obat
     $query = "UPDATE obat SET 
-        nama_obat = '$nama_obat', 
-        kemasan = '$kemasan', 
-        harga = '$harga' 
-        WHERE id = '$id'";
+        nama_obat = ?, 
+        kemasan = ?, 
+        harga = ? 
+        WHERE id = ?";
+
+    $stmt = mysqli_prepare($mysqli, $query);
+
+    mysqli_stmt_bind_param($stmt, "ssii", $nama_obat, $kemasan, $harga, $id);
 
     // Eksekusi query
-    if (mysqli_query($mysqli, $query)) {
+    if (mysqli_stmt_execute($stmt)) {
         // Jika berhasil, redirect kembali ke halaman index atau sesuaikan dengan kebutuhan Anda
         echo '<script>';
         echo 'alert("Data obat berhasil diubah!");';
@@ -27,6 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Jika terjadi kesalahan, tampilkan pesan error
         echo "Error: " . $query . "<br>" . mysqli_error($mysqli);
     }
+
+    mysqli_stmt_close($stmt);
 }
 
 // Tutup koneksi
