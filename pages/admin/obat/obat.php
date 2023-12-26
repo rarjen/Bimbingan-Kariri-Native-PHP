@@ -10,7 +10,7 @@
             </div>
             <div class="modal-body">
                 <!-- Form tambah data obat disini -->
-                <form action="pages/obat/tambahObat.php" method="post">
+                <form action="./tambahObat.php" method="post">
                     <div class="form-group">
                         <label for="nama_obat">Nama Obat</label>
                         <input type="text" class="form-control" id="nama_obat" name="nama_obat" required>
@@ -72,7 +72,7 @@
                         <table class="table table-hover text-nowrap">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
+                                    <th>No</th>
                                     <th>Nama Obat</th>
                                     <th>Kemasan</th>
                                     <th>Harga</th>
@@ -81,7 +81,6 @@
                             </thead>
                             <tbody>
                                 <?php
-                                // include '../../koneksi.php';
                                 $query = "SELECT * FROM obat";
                                 $result = mysqli_query($mysqli, $query);
                                 $no = 1;
@@ -94,7 +93,7 @@
                                         <td><?php echo $row['harga'] ?></td>
                                         <td>
                                             <button type='button' class='btn btn-sm btn-warning edit-btn' data-obatid='<?php echo $row['id']; ?>'>Edit</button>
-                                            <a href='pages/obat/hapusObat.php?id=<?php echo $row['id']; ?>' class='btn btn-sm btn-danger' onclick='return confirm("Anda yakin ingin hapus?");'>Hapus</a>
+                                            <a href='./hapusObat.php?id=<?php echo $row['id']; ?>' class='btn btn-sm btn-danger' onclick='return confirm("Anda yakin ingin hapus?");'>Hapus</a>
                                         </td>
                                     </tr>
                                 <?php } // Add this closing bracket
