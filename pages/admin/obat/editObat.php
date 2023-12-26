@@ -1,10 +1,10 @@
 <?php
-include("../../koneksi.php");
+include("../../../koneksi.php");
 
 $id = $_GET['id']; //mengambil id user yang ingin diubah
 
 //menampilkan user berdasarkan id
-$data = mysqli_query($mysqli, "select * from obat where id = '$id'");
+$data = mysqli_query($mysqli, "SELECT * FROM obat WHERE id = '$id'");
 $row = mysqli_fetch_assoc($data);
 ?>
 
@@ -15,12 +15,12 @@ $row = mysqli_fetch_assoc($data);
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="editModalLabel">Edit Obat</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                    <span aria-hidden='true'>&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form id="editForm" method="POST" action="pages/obat/updateObat.php">
+                <form id="editForm" method="POST" action="./updateObat.php">
                     <input type="hidden" name="id" value="<?= $row['id']; ?>">
                     <div class="form-group">
                         <label for="nama_obat">Nama Obat</label>

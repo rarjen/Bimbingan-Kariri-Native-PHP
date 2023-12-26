@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // exit();
         echo '<script>';
         echo 'alert("Data obat berhasil ditambahkan!");';
-        echo 'window.location.href = "../../index.php";';
+        echo 'window.location.href = "./index.php";';
         echo '</script>';
         exit();
     } else {

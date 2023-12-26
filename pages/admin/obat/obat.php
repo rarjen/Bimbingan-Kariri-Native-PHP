@@ -81,7 +81,7 @@
                             </thead>
                             <tbody>
                                 <?php
-                                include 'koneksi.php';
+                                // include '../../koneksi.php';
                                 $query = "SELECT * FROM obat";
                                 $result = mysqli_query($mysqli, $query);
                                 $no = 1;

@@ -1,16 +1,14 @@
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
 <html lang="en">
+
+<?php include("./koneksi.php") ?>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>AdminLTE 3 | Starter</title>
+    <title>Poliklinik | OKA</title>
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="assets/admin/plugins/fontawesome-free/css/all.min.css">
@@ -24,7 +22,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <div class="wrapper">
 
         <!-- Navbar  -->
-        <?php include("components/navbar.php") ?>
+        <?php include("./components/navbar.php") ?>
 
         <!-- Main Sidebar Container -->
         <?php include("components/sidebar.php") ?>
@@ -33,16 +31,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <div class="content-header">
-                <?php include("pages/obat/obat.php") ?>
+                <?php include("./pages/home/index.php") ?>
             </div>
             <!-- /.content -->
         </div>
 
         <!-- /.content-wrapper -->
-
-        <!-- Control Sidebar -->
-        <?php include("components/controlsidebar.php") ?>
-        <!-- /.control-sidebar -->
 
         <!-- Main Footer -->
         <?php include("components/footer.php") ?>
@@ -62,6 +56,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="assets/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
 
     <script>
         $(document).ready(function() {
