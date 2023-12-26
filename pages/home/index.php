@@ -9,7 +9,6 @@ function queryTotal($mysqli, $tableName): string
 ?>
 
 <div class="wrapper">
-
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
@@ -22,7 +21,7 @@ function queryTotal($mysqli, $tableName): string
                         <div class="info-box-content">
                             <span class="info-box-text">Pasien</span>
                             <span class="info-box-number">
-                                54
+                                <?= queryTotal($mysqli, "pasien"); ?>
                             </span>
                         </div>
                         <!-- /.info-box-content -->
@@ -36,7 +35,7 @@ function queryTotal($mysqli, $tableName): string
 
                         <div class="info-box-content">
                             <span class="info-box-text">Dokter</span>
-                            <span class="info-box-number">77</span>
+                            <span class="info-box-number"><?= queryTotal($mysqli, "dokter"); ?></span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
@@ -66,13 +65,27 @@ function queryTotal($mysqli, $tableName): string
 
                         <div class="info-box-content">
                             <span class="info-box-text">Jadwal Pemeriksaan</span>
-                            <span class="info-box-number">126</span>
+                            <span class="info-box-number"><?= queryTotal($mysqli, "jadwal_periksa"); ?></span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
                     <!-- /.info-box -->
                 </div>
                 <!-- /.col -->
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box mb-3">
+                        <span class="info-box-icon bg-dark elevation-1"><i class="fas fa-solid fa-hospital" style="color: #ffffff;"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Poliklinik</span>
+                            <span class="info-box-number"><?= queryTotal($mysqli, "poli"); ?></span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
+
             </div>
             <!-- /.row -->
         </div><!--/. container-fluid -->
