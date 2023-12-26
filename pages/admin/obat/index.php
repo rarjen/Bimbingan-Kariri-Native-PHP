@@ -79,13 +79,13 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="index.php" class="nav-link active">
+                                    <a href="./index.php" class="nav-link active">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Obat</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="pages/admin/obat/index.php" class="nav-link">
+                                    <a href="../dokter/index.php" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Dokter</p>
                                     </a>
@@ -100,6 +100,12 @@
                                     <a href="pages/admin/obat/index.php" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Jadwal Pemeriksaan</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="../poliklinik/index.php" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Poliklinik</p>
                                     </a>
                                 </li>
                             </ul>
