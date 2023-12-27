@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style/loginStyle.css">
 </head>
 
 <body>
@@ -22,7 +23,7 @@
                         <a class="nav-link" aria-current="page" href="#">Pasien</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Dokter</a>
+                        <a class="nav-link" href="../dokter/login.php">Dokter</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="#">Admin</a>
@@ -35,6 +36,9 @@
 
     <!-- Content -->
     <div class="wrapper">
+        <div class="logo d-flex justify-content-center">
+            <img class="img_logo" style="width: 10%;" src="https://ik.imagekit.io/6v306xm58/Logo_Udinus_-_Official_02.png?updatedAt=1688364410119" alt="Logo">
+        </div>
         <div class="container">
             <form>
                 <div class="form-group">
@@ -45,10 +49,6 @@
                 <div class="form-group">
                     <label for="exampleInputPassword1">Password</label>
                     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                </div>
-                <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
