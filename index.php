@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include("./koneksi.php") ?>
 
 <head>
     <meta charset="utf-8">
@@ -31,7 +30,7 @@
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <div class="content-header">
-                <?php include("./pages/home/index.php") ?>
+                <div id="content"></div>
             </div>
             <!-- /.content -->
         </div>
@@ -59,16 +58,39 @@
     <!-- Bootstrap 4 -->
     <script src="assets/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-
     <script>
         $(document).ready(function() {
-            $('.edit-btn').on('click', function() {
-                var dataId = $(this).data('obatid'); // obatid didapat dari id yang dikirimkan melalui tombol edit
-                $('#seg-modal').load(`pages/obat/editObat.php?id=${dataId}`, function() {
-                    $('#myModal').modal('show');
-                });
-            });
-        });
+            $('#content').load('pages/home/index.php')
+            $('.menu').click(function(e) {
+                e.preventDefault();
+                var menu = $(this).attr('id');
+                if (menu == "menuHome") {
+                    $('.nav-link').removeClass('active')
+                    $(this).addClass('active')
+                    $('#content').load('pages/home/index.php');
+                } else if (menu == "menuObat") {
+                    $('.nav-link').removeClass('active')
+                    $(this).addClass('active')
+                    $('#content').load('pages/admin/obat/index.php');
+                } else if (menu == "menuDokter") {
+                    $('.nav-link').removeClass('active')
+                    $(this).addClass('active')
+                    $('#content').load('pages/admin/dokter/index.php');
+                } else if (menu == "menuPasien") {
+                    $('.nav-link').removeClass('active')
+                    $(this).addClass('active')
+                    $('#content').load('pages/admin/pasien/index.php');
+                } else if (menu == "menuJadwal") {
+                    $('.nav-link').removeClass('active')
+                    $(this).addClass('active')
+                    $('#content').load('pages/admin/jadwalPemeriksaan/index.php');
+                } else if (menu == "menuPoliklinik") {
+                    $('.nav-link').removeClass('active')
+                    $(this).addClass('active')
+                    $('#content').load('pages/admin/poliklinik/index.php');
+                }
+            })
+        })
     </script>
 </body>
 

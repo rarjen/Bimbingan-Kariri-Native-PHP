@@ -1,4 +1,6 @@
 <?php
+include("../../koneksi.php");
+
 function queryTotal($mysqli, $tableName): string
 {
     $data = mysqli_query($mysqli, "SELECT COUNT(*) AS total_data FROM $tableName");

@@ -34,37 +34,37 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link active">
+                            <a href="#" class="nav-link active menu" id="menuHome">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Home</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/admin/obat/index.php" class="nav-link">
+                            <a href="pages/admin/obat/index.php" class="nav-link menu" id="menuObat">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Obat</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/admin/dokter/index.php" class="nav-link">
+                            <a href="pages/admin/dokter/index.php" class="nav-link menu" id="menuDokter">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Dokter</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/admin/obat/index.php" class="nav-link">
+                            <a href="pages/admin/pasien/index.php" class="nav-link menu" id="menuPasien">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Pasien</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/admin/obat/index.php" class="nav-link">
+                            <a href="pages/admin/obat/index.php" class="nav-link menu" id="menuJadwal">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Jadwal Pemeriksaan</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/admin/poliklinik/index.php" class="nav-link">
+                            <a href="pages/admin/poliklinik/index.php" class="nav-link menu" id="menuPoliklinik">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Poliklinik</p>
                             </a>
