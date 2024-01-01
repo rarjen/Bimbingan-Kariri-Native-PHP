@@ -69,13 +69,31 @@
                     $(this).addClass('active')
                     $('#content').load('pages/home/index.php');
                 } else if (menu == "menuObat") {
-                    $('.nav-link').removeClass('active')
-                    $(this).addClass('active')
-                    $('#content').load('pages/admin/obat/index.php');
+                    $('.nav-link').removeClass('active');
+                    $(this).addClass('active');
+                    $('#content').load('pages/admin/obat/index.php', function() {
+                        $(document).ready(function() {
+                            $('.edit-btn').on('click', function() {
+                                var dataId = $(this).data('obatid'); // obatid didapat dari id yang dikirimkan melalui tombol edit
+                                $('#seg-modal').load(`pages/admin/obat/editObat.php?id=${dataId}`, function() {
+                                    $('#myModal').modal('show');
+                                });
+                            });
+                        });
+                    });
                 } else if (menu == "menuDokter") {
                     $('.nav-link').removeClass('active')
                     $(this).addClass('active')
-                    $('#content').load('pages/admin/dokter/index.php');
+                    $('#content').load('pages/admin/dokter/index.php', function() {
+                        $(document).ready(function() {
+                            $('.edit-btn').on('click', function() {
+                                var dataId = $(this).data('obatid'); // obatid didapat dari id yang dikirimkan melalui tombol edit
+                                $('#seg-modal').load(`pages/admin/dokter/editDokter.php?id=${dataId}`, function() {
+                                    $('#myModal').modal('show');
+                                });
+                            });
+                        });
+                    });
                 } else if (menu == "menuPasien") {
                     $('.nav-link').removeClass('active')
                     $(this).addClass('active')
@@ -87,11 +105,21 @@
                 } else if (menu == "menuPoliklinik") {
                     $('.nav-link').removeClass('active')
                     $(this).addClass('active')
-                    $('#content').load('pages/admin/poliklinik/index.php');
+                    $('#content').load('pages/admin/poliklinik/index.php', function() {
+                        $(document).ready(function() {
+                            $('.edit-btn').on('click', function() {
+                                var dataId = $(this).data('obatid'); // obatid didapat dari id yang dikirimkan melalui tombol edit
+                                $('#seg-modal').load(`pages/admin/poliklinik/editPoliklinik.php?id=${dataId}`, function() {
+                                    $('#myModal').modal('show');
+                                });
+                            });
+                        });
+                    });
                 }
             })
         })
     </script>
+
 </body>
 
 </html>
