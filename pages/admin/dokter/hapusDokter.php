@@ -6,4 +6,4 @@ $id = $_GET['id']; //menampung id
 $datas = mysqli_query($mysqli, "DELETE FROM dokter WHERE id ='$id'") or die(mysqli_error($mysqli));
 
 //alert dan redirect ke obat.php
-echo "<script>alert('data berhasil dihapus.');window.location='./index.php';</script>";
+echo "<script>alert('data berhasil dihapus.');window.location='../../../index.php';</script>";

@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo '<script>
     ';
         echo 'alert("Data dokter berhasil ditambahkan!");';
-        echo 'window.location.href = "./index.php";';
+        echo 'window.location.href = "../../../index.php";';
         echo '
 </script>';
         exit();
