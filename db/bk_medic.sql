@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3308
--- Waktu pembuatan: 27 Des 2023 pada 08.51
+-- Waktu pembuatan: 02 Jan 2024 pada 07.20
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 7.4.28
 
@@ -85,12 +85,12 @@ CREATE TABLE `dokter` (
 --
 
 INSERT INTO `dokter` (`id`, `nama`, `alamat`, `no_hp`, `id_poli`) VALUES
-(1, 'Dr. Richard Lee', 'Semarang, Indonesia', '085329447621', 1),
-(3, 'Dr. Tirta Sanjaya', 'Jakarta, Indonesia', '085324775630', 1),
-(4, 'Dr. Otniel Kevin', 'Semarang, Indonesia', '085329447621', 1),
-(5, 'Dr. Bima', 'Temanggung, Indonesia', '085417963028', 3),
-(6, 'Dr. Hadha', 'Semarang, Indonesia', '0854796332014', 3),
-(7, 'dr. Izza', 'Semarang, Indonesia', '0854796332014', 2);
+(1, 'dr. Richard Lee', 'Semarang, Indonesia', '085329447621', 1),
+(3, 'dr. Tirta Sanjaya', 'Jakarta, Indonesia', '085324775630', 1),
+(4, 'dr. Otniel Kevin', 'Semarang, Indonesia', '085329447621', 1),
+(5, 'dr. Bima', 'Temanggung, Indonesia', '085417963028', 1),
+(7, 'dr. Izza', 'Semarang, Indonesia', '0854796332014', 2),
+(8, 'dr. Leinto', 'Jakarta, Indonesia', '085123456789', 2);
 
 -- --------------------------------------------------------
 
@@ -105,6 +105,15 @@ CREATE TABLE `jadwal_periksa` (
   `jam_mulai` time NOT NULL,
   `jam_selesai` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `jadwal_periksa`
+--
+
+INSERT INTO `jadwal_periksa` (`id`, `id_dokter`, `hari`, `jam_mulai`, `jam_selesai`) VALUES
+(1, 8, 'Kamis', '10:00:00', '11:00:00'),
+(2, 4, 'Jumat', '10:00:00', '11:00:00'),
+(3, 1, 'Senin', '09:00:00', '10:00:00');
 
 -- --------------------------------------------------------
 
@@ -128,7 +137,7 @@ INSERT INTO `obat` (`id`, `nama_obat`, `kemasan`, `harga`) VALUES
 (2, 'Anti Biotik', 'Kaplet 10 x 5', 20000),
 (3, 'Antimo', 'Kaplet 4 x 4', 13000),
 (4, 'Obat Malaria', 'Kaplet 2x2', 24000),
-(6, 'Obat Tipes', 'Botol', 30000);
+(6, 'Obat Tipes', 'Botol', 31000);
 
 -- --------------------------------------------------------
 
@@ -142,8 +151,16 @@ CREATE TABLE `pasien` (
   `alamat` varchar(255) DEFAULT NULL,
   `no_ktp` varchar(16) DEFAULT NULL,
   `no_hp` varchar(12) DEFAULT NULL,
-  `no_rm` varchar(50) DEFAULT NULL
+  `no_rm` varchar(50) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `pasien`
+--
+
+INSERT INTO `pasien` (`id`, `nama`, `alamat`, `no_ktp`, `no_hp`, `no_rm`, `password`) VALUES
+(1, 'Test ', 'Semarang', '112233', '0855555', '202401-001', 'password');
 
 -- --------------------------------------------------------
 
@@ -272,25 +289,25 @@ ALTER TABLE `detail_periksa`
 -- AUTO_INCREMENT untuk tabel `dokter`
 --
 ALTER TABLE `dokter`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT untuk tabel `jadwal_periksa`
 --
 ALTER TABLE `jadwal_periksa`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `obat`
 --
 ALTER TABLE `obat`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT untuk tabel `pasien`
 --
 ALTER TABLE `pasien`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `periksa`
@@ -302,7 +319,7 @@ ALTER TABLE `periksa`
 -- AUTO_INCREMENT untuk tabel `poli`
 --
 ALTER TABLE `poli`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
