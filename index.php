@@ -1,6 +1,17 @@
+<?php
+// Mulai sesi
+session_start();
+
+// Cek apakah sesi username sudah diset atau tidak
+if (!isset($_SESSION['username'])) {
+    // Jika tidak, redirect ke halaman autentikasi
+    // header("Location: pages/auth/index.php");
+    // exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-
 
 <head>
     <meta charset="utf-8">
