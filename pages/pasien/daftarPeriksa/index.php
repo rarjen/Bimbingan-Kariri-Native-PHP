@@ -1,1 +1,5 @@
-<h1>Daftar Peeriksa</h1>
+<?php
+
+include("../../../koneksi.php");
+
+include("./periksa.php");
