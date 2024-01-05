@@ -10,7 +10,7 @@
             </div>
             <div class="modal-body">
                 <!-- Form tambah data obat disini -->
-                <form action="pages/admin/obat/tambahObat.php" method="POST">
+                <form action="obat/tambahObat.php" method="POST">
                     <div class="form-group">
                         <label for="nama_obat">Nama Obat</label>
                         <input type="text" class="form-control" id="nama_obat" name="nama_obat" required>
@@ -93,7 +93,7 @@
                                         <td><?php echo $row['harga'] ?></td>
                                         <td>
                                             <button type='button' class='btn btn-sm btn-warning edit-btn' data-obatid='<?php echo $row['id']; ?>'>Edit</button>
-                                            <a href='pages/admin/obat/hapusObat.php?id=<?php echo $row['id']; ?>' class='btn btn-sm btn-danger' onclick='return confirm("Anda yakin ingin hapus?");'>Hapus</a>
+                                            <a href='obat/hapusObat.php?id=<?php echo $row['id']; ?>' class='btn btn-sm btn-danger' onclick='return confirm("Anda yakin ingin hapus?");'>Hapus</a>
                                         </td>
                                     </tr>
                                 <?php } // Add this closing bracket
