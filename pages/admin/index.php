@@ -3,12 +3,25 @@
 session_start();
 
 // Cek apakah sesi username sudah diset atau tidak
-if (!isset($_SESSION['username'])) {
-    // Jika tidak, redirect ke halaman autentikasi
-    // header("Location: pages/auth/index.php");
-    // exit();
+if (isset($_SESSION['login'])) {
+    $_SESSION['login'] = true;
+} else {
+    echo "<meta http-equiv='refresh' content='0; url=../../index.php'>";
+    die();
 }
+
+$nama = $_SESSION['username'];
+$akses = $_SESSION['akses'];
+$login = $_SESSION['login'];
+$id = $_SESSION['id'];
+
+if ($akses != "admin") {
+    echo "<meta http-equiv='refresh' content='0; url=../../index.php'>";
+    die();
+}
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
