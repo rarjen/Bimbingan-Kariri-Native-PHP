@@ -22,13 +22,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $row = mysqli_fetch_assoc($resultCheckExist);
 
         if ($row['no_ktp'] == $no_ktp && $row['password'] == $password) {
-            // $_SESSION["signup"] = true;
-            // $_SESSION["id"] = $row["id"];
-            // $_SESSION["username"] = $nama;
-            // $_SESSION["no_rm"] = $row["no_rm"];
-            // $_SESSION["akses"] = "pasien";
+            $_SESSION["login"] = true;
+            $_SESSION["id"] = $row["id"];
+            $_SESSION["username"] = $row["nama"];
+            $_SESSION["no_rm"] = $row["no_rm"];
+            $_SESSION["akses"] = "pasien";
             echo "<script>alert(`Login Berhasil`)</script>";
-            echo "<meta http-equiv='refresh' content='0; url=login.php'>";
+            echo "<meta http-equiv='refresh' content='0; url=../../index.php'>";
             die();
         }
     }
