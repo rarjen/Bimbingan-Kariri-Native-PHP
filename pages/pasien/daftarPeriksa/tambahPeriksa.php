@@ -1,10 +1,21 @@
 <?php
+session_start();
+include("../../../koneksi.php");
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    function getLatestQueue($mysqli, $id_jadwal)
+    {
+        $queryLatestQueue = mysqli_query($mysqli, "SELECT MAX(no_antrian) as max_queue FROM daftar_poli WHERE id_jadwal = $id_jadwal");
+        $resultLatestQueue = mysqli_fetch_assoc($queryLatestQueue);
+        $latestQueue = $resultLatestQueue['max_queue'];
+        return $latestQueue;
+    }
 
     $id_pasien = $_SESSION["id"];
     $id_jadwal = $_POST["jadwal"];
     $keluhan = $_POST["keluhan"];
-    $no_antrian = 1;
+    $no_antrian = getLatestQueue($mysqli, $id_jadwal);
 
     // Query untuk menambahkan data dokter ke dalam tabel
     $query = "INSERT INTO dokter (id_pasien, id_jadwal, keluhan, no_antrian) VALUES (?, ?, ?, ?)";

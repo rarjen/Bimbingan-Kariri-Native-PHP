@@ -2,7 +2,7 @@
 session_start();
 $no_rm = $_SESSION['no_rm'];
 $id = $_SESSION['id'];
-$id_poli = 0;
+
 ?>
 <div class="d-flex">
     <div class="col-4">
@@ -20,10 +20,10 @@ $id_poli = 0;
                     <select class="form-control" id="poliklinik" name="poliklinik" required>
                         <?php
                         $queryPoli = "SELECT * FROM poli";
+                        "SELECT MAX(no_antrian) as max_queue FROM daftar_poli WHERE id_jadwal = $id_jadwal";
                         $resultPoli = mysqli_query($mysqli, $queryPoli);
                         while ($rowPoli = mysqli_fetch_assoc($resultPoli)) {
                             echo "<option value='{$rowPoli['id']}'>{$rowPoli['nama_poli']}</option>";
-                            $id_poli = $rowPoli['id'];
                         }
                         ?>
                     </select>
@@ -35,9 +35,7 @@ $id_poli = 0;
                         $queryJadwal = "SELECT jadwal_periksa.id, dokter.nama AS nama_dokter, jadwal_periksa.hari, jadwal_periksa.jam_mulai, jadwal_periksa.jam_selesai
                         FROM jadwal_periksa
                         JOIN dokter ON jadwal_periksa.id_dokter = dokter.id";
-
                         $resultJadwal = mysqli_query($mysqli, $queryJadwal);
-
                         while ($rowJadwal = mysqli_fetch_assoc($resultJadwal)) {
                             $namaDokter = $rowJadwal['nama_dokter'];
                             $hari = $rowJadwal['hari'];
