@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3308
--- Waktu pembuatan: 02 Jan 2024 pada 07.20
+-- Waktu pembuatan: 06 Jan 2024 pada 05.04
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 7.4.28
 
@@ -38,7 +38,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `username`, `password`) VALUES
-(1, 'admin', 'admin');
+(1, 'admin123', 'admin');
 
 -- --------------------------------------------------------
 
@@ -53,6 +53,14 @@ CREATE TABLE `daftar_poli` (
   `keluhan` text NOT NULL,
   `no_antrian` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `daftar_poli`
+--
+
+INSERT INTO `daftar_poli` (`id`, `id_pasien`, `id_jadwal`, `keluhan`, `no_antrian`) VALUES
+(1, 1, 1, 'Mantap', 1),
+(2, 1, 2, 'Flu', 2);
 
 -- --------------------------------------------------------
 
@@ -85,7 +93,7 @@ CREATE TABLE `dokter` (
 --
 
 INSERT INTO `dokter` (`id`, `nama`, `alamat`, `no_hp`, `id_poli`) VALUES
-(1, 'dr. Richard Lee', 'Semarang, Indonesia', '085329447621', 1),
+(1, 'dr. Richard Lee', 'Semarang, Indonesia', '085329447623', 1),
 (3, 'dr. Tirta Sanjaya', 'Jakarta, Indonesia', '085324775630', 1),
 (4, 'dr. Otniel Kevin', 'Semarang, Indonesia', '085329447621', 1),
 (5, 'dr. Bima', 'Temanggung, Indonesia', '085417963028', 1),
@@ -133,11 +141,11 @@ CREATE TABLE `obat` (
 --
 
 INSERT INTO `obat` (`id`, `nama_obat`, `kemasan`, `harga`) VALUES
-(1, 'Paracetamol', 'Botol 50 ml', 40000),
+(1, 'Paracetamol', 'Botol 50 ml', 42000),
 (2, 'Anti Biotik', 'Kaplet 10 x 5', 20000),
 (3, 'Antimo', 'Kaplet 4 x 4', 13000),
 (4, 'Obat Malaria', 'Kaplet 2x2', 24000),
-(6, 'Obat Tipes', 'Botol', 31000);
+(9, 'Obat Stroke', 'Kaplet', 32000);
 
 -- --------------------------------------------------------
 
@@ -160,7 +168,7 @@ CREATE TABLE `pasien` (
 --
 
 INSERT INTO `pasien` (`id`, `nama`, `alamat`, `no_ktp`, `no_hp`, `no_rm`, `password`) VALUES
-(1, 'Test ', 'Semarang', '112233', '0855555', '202401-001', 'password');
+(1, 'Ironman', 'Semarang', '112233', '0855555', '202401-001', 'password');
 
 -- --------------------------------------------------------
 
@@ -195,7 +203,8 @@ CREATE TABLE `poli` (
 INSERT INTO `poli` (`id`, `nama_poli`, `keterangan`) VALUES
 (1, 'Poliklinik Arjuna', 'Semarang, Indonesia'),
 (2, 'Poliklinik Sadewa', 'Jakarta, Indonesia'),
-(3, 'Poliklinik Nakula', 'Temanggung, Indonesia');
+(3, 'Poliklinik Nakula', 'Temanggung, Indonesia'),
+(7, 'Poliklinik Yudhistira', 'Surabaya, Indonesia');
 
 --
 -- Indexes for dumped tables
@@ -277,7 +286,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT untuk tabel `daftar_poli`
 --
 ALTER TABLE `daftar_poli`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `detail_periksa`
@@ -289,7 +298,7 @@ ALTER TABLE `detail_periksa`
 -- AUTO_INCREMENT untuk tabel `dokter`
 --
 ALTER TABLE `dokter`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT untuk tabel `jadwal_periksa`
@@ -301,7 +310,7 @@ ALTER TABLE `jadwal_periksa`
 -- AUTO_INCREMENT untuk tabel `obat`
 --
 ALTER TABLE `obat`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT untuk tabel `pasien`
@@ -319,7 +328,7 @@ ALTER TABLE `periksa`
 -- AUTO_INCREMENT untuk tabel `poli`
 --
 ALTER TABLE `poli`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
