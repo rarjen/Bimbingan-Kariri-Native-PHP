@@ -1,9 +1,10 @@
 <?php
 session_start();
-$no_rm = $_SESSION['no_rm'];
-$id = $_SESSION['id'];
 
+$no_rm = $_SESSION['no_rm'];
+$id_pasien = $_SESSION['id'];
 ?>
+
 <div class="d-flex">
     <div class="col-4">
         <div class="card border rounded-lg" style="background-color: white; overflow: hidden;">
@@ -11,13 +12,14 @@ $id = $_SESSION['id'];
                 <h3 class="card-title text-white">Daftar Poliklinik</h3>
             </div>
             <form action="daftarPeriksa/tambahPeriksa.php" method="POST" class="py-2 px-3">
+                <input type="hidden" value="<?= $id_pasien; ?>" name="id_pasien">
                 <div class="form-group my-2">
                     <label for="no_rm">Nomor Rekam Medis</label>
                     <input class="w-100 px-4 rounded-lg border page-link text-dark" type="text" name="no_rm" id="no_rm" placeholder="202312-001" value="<?= $no_rm; ?>" disabled required>
                 </div>
                 <div class="form-group my-2">
                     <label for="no_rm">Pilih Poliklinik</label>
-                    <select class="form-control" id="poliklinik" name="poliklinik" required>
+                    <select class="form-control" id="poliklinik" name="poliklinik" required">
                         <?php
                         $queryPoli = "SELECT * FROM poli";
                         "SELECT MAX(no_antrian) as max_queue FROM daftar_poli WHERE id_jadwal = $id_jadwal";
@@ -30,20 +32,8 @@ $id = $_SESSION['id'];
                 </div>
                 <div class="form-group my-2">
                     <label for="no_rm">Pilih Jadwal</label>
-                    <select class="form-control" id="jadwal" name="jadwal" required>
-                        <?php
-                        $queryJadwal = "SELECT jadwal_periksa.id, dokter.nama AS nama_dokter, jadwal_periksa.hari, jadwal_periksa.jam_mulai, jadwal_periksa.jam_selesai
-                        FROM jadwal_periksa
-                        JOIN dokter ON jadwal_periksa.id_dokter = dokter.id";
-                        $resultJadwal = mysqli_query($mysqli, $queryJadwal);
-                        while ($rowJadwal = mysqli_fetch_assoc($resultJadwal)) {
-                            $namaDokter = $rowJadwal['nama_dokter'];
-                            $hari = $rowJadwal['hari'];
-                            $jamMulai = $rowJadwal['jam_mulai'];
-                            $jamSelesai = $rowJadwal['jam_selesai'];
-                            echo "<option value='{$rowJadwal['id']}'>{$namaDokter} | {$hari} | {$jamMulai} - {$jamSelesai}</option>";
-                        }
-                        ?>
+                    <select class="form-control" id="jadwal" name="jadwal">
+                        <option selected>Open this select menu</option>
                     </select>
                 </div>
                 <div class="form-floating">
@@ -79,13 +69,13 @@ $id = $_SESSION['id'];
                     </thead>
                     <tbody>
                         <?php
-                        $query = "SELECT dp.id_pasien, pl.nama_poli, d.nama, jp.hari, jp.jam_mulai, jp.jam_selesai, dp.no_antrian
+                        $query = "SELECT dp.id, dp.id_pasien, pl.nama_poli, d.nama, jp.hari, jp.jam_mulai, jp.jam_selesai, dp.no_antrian
                                   FROM daftar_poli AS dp
                                   JOIN pasien AS p ON dp.id_pasien = p.id
                                   JOIN jadwal_periksa AS jp ON dp.id_jadwal = jp.id
                                   JOIN dokter AS d ON jp.id_dokter = d.id
                                   JOIN poli AS pl ON d.id_poli = pl.id
-                                  WHERE dp.id_pasien = $id;";
+                                  WHERE dp.id_pasien = $id_pasien;";
                         $result = mysqli_query($mysqli, $query);
                         $no = 1;
 
@@ -101,7 +91,9 @@ $id = $_SESSION['id'];
                                 <td><?= $row['jam_selesai']; ?></td>
                                 <td><?= $row['no_antrian']; ?></td>
                                 <td>
-                                    <button type='button' class='btn btn-sm btn-info edit-btn' data-obatid='<?php echo $row['id']; ?>'>Detail</button>
+                                    <a href="daftarPeriksa/detail.php/<?= $row["id"]; ?>">
+                                        <button type='button' class='btn btn-sm btn-info edit-btn'>Detail</button>
+                                    </a>
                                 </td>
                             </tr>
 
