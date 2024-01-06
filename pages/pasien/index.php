@@ -86,7 +86,7 @@ if ($akses != "pasien") {
 
     <script>
         $(document).ready(function() {
-            $('#content').load('home/index.php')
+            $('#content').load('daftarPeriksa/index.php')
             $('.menu').click(function(e) {
                 e.preventDefault();
                 var menu = $(this).attr('id');
@@ -97,7 +97,29 @@ if ($akses != "pasien") {
                 } else if (menu == "menuDaftar") {
                     $('.nav-link').removeClass('active')
                     $(this).addClass('active')
-                    $('#content').load('daftarPeriksa/index.php');
+                    $('#content').load('daftarPeriksa/index.php', function() {
+                        document.getElementById('poliklinik').addEventListener("change", function() {
+                            var poliId = this.value;
+                            console.log(poliId);
+                            loadJadwal(poliId);
+                        })
+
+                        function loadJadwal(poliId) {
+                            var xhr = new XMLHttpRequest();
+
+                            xhr.open("GET", 'http://localhost/poli/pages/pasien/daftarPeriksa/getJadwal.php/?poli_id=' + poliId, true);
+
+                            xhr.setRequestHeader("Content-Type", "text/html");
+
+                            xhr.onload = function() {
+                                if (xhr.status === 200) {
+                                    document.getElementById('jadwal').innerHTML = xhr.responseText;
+                                }
+                            };
+
+                            xhr.send();
+                        }
+                    });
                 }
             })
         })
