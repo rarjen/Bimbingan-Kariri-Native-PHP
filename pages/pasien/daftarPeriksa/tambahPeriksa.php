@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         return $latestQueue;
     }
 
-    $id_pasien = $_SESSION["id"];
+    $id_pasien = $_SESSION["id_pasien"];
     $id_jadwal = $_POST["jadwal"];
     $keluhan = $_POST["keluhan"];
     $no_antrian = getLatestQueue($mysqli, $id_jadwal);
