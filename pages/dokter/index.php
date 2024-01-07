@@ -97,7 +97,16 @@
                 } else if (menu == "menuJadwal") {
                     $('.nav-link').removeClass('active')
                     $(this).addClass('active')
-                    $('#content').load('jadwal/index.php');
+                    $('#content').load('jadwal/index.php', function() {
+                        $(document).ready(function() {
+                            $('.edit-btn').on('click', function() {
+                                var dataId = $(this).data('obatid'); // obatid didapat dari id yang dikirimkan melalui tombol edit
+                                $('#seg-modal').load(`./jadwal/editJadwal.php?id=${dataId}`, function() {
+                                    $('#myModal').modal('show');
+                                });
+                            });
+                        });
+                    });
                 } else if (menu == "menuPemeriksaan") {
                     $('.nav-link').removeClass('active')
                     $(this).addClass('active')
