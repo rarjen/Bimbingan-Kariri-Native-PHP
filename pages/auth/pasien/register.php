@@ -28,11 +28,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "<meta http-equiv='refresh' content='0; url=regsiter.php'>";
             die();
         }
-        // $_SESSION["signup"] = true;
-        // $_SESSION["id"] = $row["id"];
-        // $_SESSION["username"] = $nama;
-        // $_SESSION["no_rm"] = $row["no_rm"];
-        // $_SESSION["akses"] = "pasien";
+        $_SESSION["login"] = true;
+        $_SESSION["id"] = $row["id"];
+        $_SESSION["username"] = $nama;
+        $_SESSION["no_rm"] = $row["no_rm"];
+        $_SESSION["akses"] = "pasien";
 
         echo "<meta http-equiv='refresh' content='0; url=#'>";
         die();
@@ -66,12 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $queryInsert = "INSERT INTO pasien (nama, alamat, no_ktp, no_hp, no_rm, password) VALUES ('$nama', '$alamat', '$no_ktp', '$no_hp', '$no_rm', '$password')";
 
     if (mysqli_query($mysqli, $queryInsert)) {
-        // $_SESSION["signup"] = true;
-        // $_SESSION["id"] = $row["id"];
-        // $_SESSION["username"] = $nama;
-        // $_SESSION["no_rm"] = $row["no_rm"];
-        // $_SESSION["akses"] = "pasien";
-        echo "<meta http-equiv='refresh' content='0; url=#'>";
+        echo "<meta http-equiv='refresh' content='0; url=./login.php'>";
         die();
     } else {
         echo "Error: " . $queryInsert . "<br>" . mysqli_error($mysqli);
