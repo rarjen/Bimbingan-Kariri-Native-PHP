@@ -1,4 +1,9 @@
 <?php
+
+session_start();
+
+$id_pasien = $_SESSION["id"];
+
 include("../../../koneksi.php");
 
 function queryTotal($mysqli, $tableName): string
@@ -50,7 +55,7 @@ function queryJadwalPeriksa($mysqli, $tableName, $id)
 
                         <div class="info-box-content">
                             <span class="info-box-text">Jadwal Pemeriksaan Saya</span>
-                            <span class="info-box-number"><?= queryJadwalPeriksa($mysqli, "daftar_poli", 1); ?></span>
+                            <span class="info-box-number"><?= queryJadwalPeriksa($mysqli, "daftar_poli", $id_pasien); ?></span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
