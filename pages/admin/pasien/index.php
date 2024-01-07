@@ -1,1 +1,3 @@
-<h1>INI PASIEN</h1>
+<?php
+include("../../../koneksi.php");
+include("./pasien.php");

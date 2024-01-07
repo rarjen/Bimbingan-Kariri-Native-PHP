@@ -1,3 +1,8 @@
+<?php
+session_start();
+
+$id_dokter = $_SESSION['id'];
+?>
 <!-- Modal Tambah Data Obat -->
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -89,7 +94,7 @@
                             </thead>
                             <tbody>
                                 <?php
-                                $query = "SELECT * FROM jadwal_periksa WHERE id_dokter = 8";
+                                $query = "SELECT * FROM jadwal_periksa WHERE id_dokter = $id_dokter";
                                 $result = mysqli_query($mysqli, $query);
 
                                 $no = 1;

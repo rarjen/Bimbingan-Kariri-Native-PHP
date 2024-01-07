@@ -1,1 +1,3 @@
-<h1>JADWAL PEMRIKSAAN</h1>
+<?php
+include("../../../koneksi.php");
+include("./jadwal.php");

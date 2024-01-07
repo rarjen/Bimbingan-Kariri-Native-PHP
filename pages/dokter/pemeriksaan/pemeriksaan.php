@@ -1,3 +1,9 @@
+<?php
+session_start();
+
+$id_dokter = $_SESSION['id'];
+?>
+
 <div id="seg-modal">
 
 </div>
@@ -27,12 +33,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Data Jadwal</h3>
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-sm btn-success float-right" data-toggle="modal" data-target="#addModal">
-                                Tambah
-                            </button>
-                        </div>
+                        <h3 class="card-title">Data Pemeriksaan Pasien</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive p-0">
@@ -56,7 +57,7 @@
                                             JOIN jadwal_periksa jp on dp.id_jadwal = jp.id
                                             JOIN dokter d on jp.id_dokter = d.id
                                             JOIN poli p3 on d.id_poli = p3.id
-                                            WHERE d.id = 8;";
+                                            WHERE d.id = $id_dokter;";
                                 $result = mysqli_query($mysqli, $query);
 
                                 $no = 1;

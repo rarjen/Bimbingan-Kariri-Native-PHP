@@ -1,8 +1,8 @@
 <?php
 
-// session_start();
+session_start();
 
-// $id_pasien = $_SESSION["id"];
+$id_dokter = $_SESSION["id"];
 
 include("../../../koneksi.php");
 
@@ -90,7 +90,7 @@ function queryJadwal($mysqli, $tableName, $id)
 
                         <div class="info-box-content">
                             <span class="info-box-text">Pemeriksaan Saya</span>
-                            <span class="info-box-number"><?= queryPeriksa($mysqli, "periksa", 8); ?></span>
+                            <span class="info-box-number"><?= queryPeriksa($mysqli, "periksa", $id_dokter); ?></span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
@@ -103,7 +103,7 @@ function queryJadwal($mysqli, $tableName, $id)
 
                         <div class="info-box-content">
                             <span class="info-box-text">Jadwal Saya</span>
-                            <span class="info-box-number"><?= queryJadwal($mysqli, "jadwal_periksa", 8); ?></span>
+                            <span class="info-box-number"><?= queryJadwal($mysqli, "jadwal_periksa", $id_dokter); ?></span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>

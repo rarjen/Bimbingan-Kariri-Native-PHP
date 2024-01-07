@@ -5,28 +5,27 @@ include_once("../../../koneksi.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
-    $no_ktp = $_POST["no_ktp"];
+    $email = $_POST["email"];
     $password = $_POST["password"];
 
-    $queryCheckExist = "SELECT * FROM pasien WHERE no_ktp = ?";
+    $queryCheckExist = "SELECT * FROM dokter WHERE email = ?";
     $stmt = mysqli_prepare($mysqli, $queryCheckExist);
-    mysqli_stmt_bind_param($stmt, "s", $no_ktp);
+    mysqli_stmt_bind_param($stmt, "s", $email);
     mysqli_stmt_execute($stmt);
     $resultCheckExist = mysqli_stmt_get_result($stmt);
 
     if (mysqli_num_rows($resultCheckExist) <= 0) {
-        echo "<script>alert(`Pasien belum terdaftar, silakan register!`)</script>";
+        echo "<script>alert(`Dokter belum terdaftar, silakan register!`)</script>";
         echo "<meta http-equiv='refresh' content='0; url=register.php'>";
         die();
     } else {
         $row = mysqli_fetch_assoc($resultCheckExist);
 
-        if ($row['no_ktp'] == $no_ktp && $row['password'] == $password) {
+        if ($row['email'] == $email && $row['password'] == $password) {
             $_SESSION["login"] = true;
             $_SESSION["id"] = $row["id"];
             $_SESSION["username"] = $row["nama"];
-            $_SESSION["no_rm"] = $row["no_rm"];
-            $_SESSION["akses"] = "pasien";
+            $_SESSION["akses"] = "dokter";
             echo "<script>alert(`Login Berhasil`)</script>";
             echo "<meta http-equiv='refresh' content='0; url=../../../index.php'>";
             die();
