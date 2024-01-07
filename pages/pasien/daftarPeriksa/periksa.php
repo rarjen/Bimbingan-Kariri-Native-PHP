@@ -79,26 +79,41 @@ $id_pasien = $_SESSION['id'];
                         $result = mysqli_query($mysqli, $query);
                         $no = 1;
 
-                        while ($row = mysqli_fetch_assoc($result)) {
+                        // Menghitung jumlah baris
+                        $rowCount = mysqli_num_rows($result);
+
+                        if ($rowCount > 0) {
+                            while ($row = mysqli_fetch_assoc($result)) {
                         ?>
 
+                                <tr>
+                                    <td><?= $no++; ?></td>
+                                    <td><?= $row['nama_poli']; ?></td>
+                                    <td><?= $row['nama']; ?></td>
+                                    <td><?= $row['hari']; ?></td>
+                                    <td><?= $row['jam_mulai']; ?></td>
+                                    <td><?= $row['jam_selesai']; ?></td>
+                                    <td><?= $row['no_antrian']; ?></td>
+                                    <td>
+                                        <a href="daftarPeriksa/detail.php/<?= $row["id"]; ?>">
+                                            <button type='button' class='btn btn-sm btn-info edit-btn'>Detail</button>
+                                        </a>
+                                    </td>
+                                </tr>
+
+                            <?php
+                            }
+                        } else {
+                            // Jika tidak ada data
+                            ?>
+
                             <tr>
-                                <td><?= $no++; ?></td>
-                                <td><?= $row['nama_poli']; ?></td>
-                                <td><?= $row['nama']; ?></td>
-                                <td><?= $row['hari']; ?></td>
-                                <td><?= $row['jam_mulai']; ?></td>
-                                <td><?= $row['jam_selesai']; ?></td>
-                                <td><?= $row['no_antrian']; ?></td>
-                                <td>
-                                    <a href="daftarPeriksa/detail.php/<?= $row["id"]; ?>">
-                                        <button type='button' class='btn btn-sm btn-info edit-btn'>Detail</button>
-                                    </a>
-                                </td>
+                                <td colspan="8" class="text-center">Tidak ada data yang ditemukan.</td>
                             </tr>
 
-                        <?php }
-                        mysqli_close($mysqli)
+                        <?php
+                        }
+                        mysqli_close($mysqli);
                         ?>
 
                     </tbody>
