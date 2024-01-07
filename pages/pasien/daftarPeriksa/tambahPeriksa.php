@@ -12,13 +12,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         return $latestQueue;
     }
 
-    $id_pasien = $_SESSION["id_pasien"];
+    $id_pasien = $_SESSION["id"];
     $id_jadwal = $_POST["jadwal"];
     $keluhan = $_POST["keluhan"];
-    $no_antrian = getLatestQueue($mysqli, $id_jadwal);
+    $no_antrian = getLatestQueue($mysqli, $id_jadwal) + 1;
 
     // Query untuk menambahkan data dokter ke dalam tabel
-    $query = "INSERT INTO dokter (id_pasien, id_jadwal, keluhan, no_antrian) VALUES (?, ?, ?, ?)";
+    $query = "INSERT INTO daftar_poli (id_pasien, id_jadwal, keluhan, no_antrian) VALUES (?, ?, ?, ?)";
 
     // Persiapkan statement
     $stmt = mysqli_prepare($mysqli, $query);
@@ -28,18 +28,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Eksekusi query
     if (mysqli_stmt_execute($stmt)) {
-        // Jika berhasil, redirect kembali ke halaman utama atau sesuaikan dengan kebutuhan Anda
-        echo '<script>';
-        echo "<script>alert(`Berhasil Daftar Poli`)</script>";
-        echo "<meta http-equiv='refresh' content='0; url=../index.php'>";
-        echo '</script>';
-        exit();
+        // Mendapatkan id terakhir yang dimasukkan
+        $id_daftar_poli = mysqli_insert_id($mysqli);
+
+        // Query untuk menambahkan data ke dalam tabel periksa
+        $queryPeriksa = "INSERT INTO periksa (id_daftar_poli) VALUES (?)";
+        $stmtPeriksa = mysqli_prepare($mysqli, $queryPeriksa);
+
+        // Menyimpan data ke dalam tabel periksa
+        mysqli_stmt_bind_param($stmtPeriksa, "i", $id_daftar_poli);
+
+        // Mengganti nilai $ dengan nilai sesuai kebutuhan Anda
+        // Eksekusi query periksa
+        if (mysqli_stmt_execute($stmtPeriksa)) {
+            echo '<script>';
+            echo "<script>alert(`Berhasil Daftar Poli dan Pemeriksaan`)</script>";
+            echo "<meta http-equiv='refresh' content='0; url=../index.php'>";
+            echo '</script>';
+            exit();
+        } else {
+            // Jika terjadi kesalahan pada query periksa
+            echo "Error: " . $queryPeriksa . "<br>" . mysqli_error($mysqli);
+        }
+
+        // Tutup statement periksa
+        mysqli_stmt_close($stmtPeriksa);
     } else {
-        // Jika terjadi kesalahan, tampilkan pesan error
+        // Jika terjadi kesalahan pada query daftar_poli
         echo "Error: " . $query . "<br>" . mysqli_error($mysqli);
     }
 
-    // Tutup statement
+    // Tutup statement daftar_poli
     mysqli_stmt_close($stmt);
 }
 

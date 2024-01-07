@@ -86,7 +86,7 @@ if ($akses != "pasien") {
 
     <script>
         $(document).ready(function() {
-            $('#content').load('daftarPeriksa/index.php')
+            $('#content').load('home/index.php')
             $('.menu').click(function(e) {
                 e.preventDefault();
                 var menu = $(this).attr('id');
