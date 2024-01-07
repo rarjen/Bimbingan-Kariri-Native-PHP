@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["username"] = $row["username"];
             $_SESSION["akses"] = "admin";
             echo "<script>alert(`Login Berhasil`)</script>";
-            echo "<meta http-equiv='refresh' content='0; url=index.php'>";
+            echo "<meta http-equiv='refresh' content='0; url=./index.php'>";
             die();
         }
     }
