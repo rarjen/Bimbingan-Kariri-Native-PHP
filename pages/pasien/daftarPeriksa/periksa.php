@@ -5,6 +5,11 @@ $no_rm = $_SESSION['no_rm'];
 $id_pasien = $_SESSION['id'];
 ?>
 
+<div id="seg-modal">
+
+</div>
+
+
 <div class="d-flex">
     <div class="col-4">
         <div class="card border rounded-lg" style="background-color: white; overflow: hidden;">
@@ -95,9 +100,10 @@ $id_pasien = $_SESSION['id'];
                                     <td><?= $row['jam_selesai']; ?></td>
                                     <td><?= $row['no_antrian']; ?></td>
                                     <td>
-                                        <a href="daftarPeriksa/detail.php/<?= $row["id"]; ?>">
+                                        <!-- <a href="daftarPeriksa/detail.php/<?= $row["id"]; ?>">
                                             <button type='button' class='btn btn-sm btn-info edit-btn'>Detail</button>
-                                        </a>
+                                        </a> -->
+                                        <button type='button' class='btn btn-sm btn-info edit-btn' data-obatid='<?php echo $row['id']; ?>'>Detail</button>
                                     </td>
                                 </tr>
 
