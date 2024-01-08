@@ -1,10 +1,12 @@
 <?php
+session_start();
 include_once '../../../koneksi.php';
+
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    // $id_dokter = $_SESSION[$id];
-    $id_dokter = 8;
+    $id_dokter = $_SESSION["id"];
     $hari = $_POST["hari"];
     $jam_mulai = $_POST["jam_mulai"];
     $jam_selesai = $_POST["jam_selesai"];
