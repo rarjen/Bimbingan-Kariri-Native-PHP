@@ -2,6 +2,7 @@
 session_start();
 
 $id_dokter = $_SESSION['id'];
+
 ?>
 
 <div id="seg-modal">
@@ -33,13 +34,13 @@ $id_dokter = $_SESSION['id'];
                             <tbody>
                                 <?php
                                 $query = "SELECT p.id, p.id_daftar_poli, p2.nama as nama_pasien, p.tgl_periksa, p.catatan, p.biaya_periksa, dp.keluhan, dp.no_antrian, jp.id_dokter, d.nama, p3.nama_poli
-                                            FROM periksa p
-                                            JOIN daftar_poli dp on p.id_daftar_poli = dp.id
-                                            JOIN pasien p2 on dp.id_pasien = p2.id
-                                            JOIN jadwal_periksa jp on dp.id_jadwal = jp.id
-                                            JOIN dokter d on jp.id_dokter = d.id
-                                            JOIN poli p3 on d.id_poli = p3.id
-                                            WHERE d.id = $id_dokter;";
+                                          FROM periksa p
+                                          JOIN daftar_poli dp on p.id_daftar_poli = dp.id
+                                          JOIN pasien p2 on dp.id_pasien = p2.id
+                                          JOIN jadwal_periksa jp on dp.id_jadwal = jp.id
+                                          JOIN dokter d on jp.id_dokter = d.id
+                                          JOIN poli p3 on d.id_poli = p3.id
+                                          WHERE d.id = $id_dokter;";
                                 $result = mysqli_query($mysqli, $query);
 
                                 $no = 1;
@@ -56,9 +57,14 @@ $id_dokter = $_SESSION['id'];
                                             <td><?php echo $row['keluhan']; ?></td>
                                             <td><?php echo $row['no_antrian']; ?></td>
                                             <td>
-                                                <a href="pemeriksaan/editPeriksa.php/<?= $row["id"]; ?>">
-                                                    <button type='button' class='btn btn-sm btn-info edit-btn'>Periksa</button>
-                                                </a>
+                                                <?php
+                                                // Tambahkan pengecekan tanggal disini
+                                                if ($row['tgl_periksa'] != null) {
+                                                    echo '<a href="pemeriksaan/detailPeriksa.php?id=' . $row['id'] . '" class="btn btn-sm btn-success">Detail</a>';
+                                                } else {
+                                                    echo '<a href="pemeriksaan/editPeriksa.php?id=' . $row['id'] . '" class="btn btn-sm btn-info">Periksa</a>';
+                                                }
+                                                ?>
                                             </td>
                                         </tr>
                                     <?php
