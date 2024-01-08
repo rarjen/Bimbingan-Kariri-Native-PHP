@@ -119,6 +119,15 @@ if ($akses != "pasien") {
 
                             xhr.send();
                         }
+
+                        $(document).ready(function() {
+                            $('.edit-btn').on('click', function() {
+                                var dataId = $(this).data('obatid'); // obatid didapat dari id yang dikirimkan melalui tombol edit
+                                $('#seg-modal').load(`./daftarPeriksa/detail.php?id=${dataId}`, function() {
+                                    $('#myModal').modal('show');
+                                });
+                            });
+                        });
                     });
                 }
             })
