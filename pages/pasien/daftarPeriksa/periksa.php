@@ -74,12 +74,13 @@ $id_pasien = $_SESSION['id'];
                     </thead>
                     <tbody>
                         <?php
-                        $query = "SELECT dp.id, dp.id_pasien, pl.nama_poli, d.nama, jp.hari, jp.jam_mulai, jp.jam_selesai, dp.no_antrian
+                        $query = "SELECT dp.id, dp.id_pasien, pl.nama_poli, d.nama, jp.hari, jp.jam_mulai, jp.jam_selesai, dp.no_antrian, p2.tgl_periksa, p2.catatan, p2.biaya_periksa
                                   FROM daftar_poli AS dp
                                   JOIN pasien AS p ON dp.id_pasien = p.id
                                   JOIN jadwal_periksa AS jp ON dp.id_jadwal = jp.id
                                   JOIN dokter AS d ON jp.id_dokter = d.id
                                   JOIN poli AS pl ON d.id_poli = pl.id
+                                  JOIN periksa p2 on p2.id_daftar_poli = dp.id
                                   WHERE dp.id_pasien = $id_pasien;";
                         $result = mysqli_query($mysqli, $query);
                         $no = 1;
@@ -100,10 +101,11 @@ $id_pasien = $_SESSION['id'];
                                     <td><?= $row['jam_selesai']; ?></td>
                                     <td><?= $row['no_antrian']; ?></td>
                                     <td>
-                                        <!-- <a href="daftarPeriksa/detail.php/<?= $row["id"]; ?>">
-                                            <button type='button' class='btn btn-sm btn-info edit-btn'>Detail</button>
-                                        </a> -->
                                         <button type='button' class='btn btn-sm btn-info edit-btn' data-obatid='<?php echo $row['id']; ?>'>Detail</button>
+                                        <?php
+                                        if ($row['tgl_periksa'] != null) {
+                                            echo '<button type="button" class="btn btn-sm btn-success bayar-btn">Bayar</button>';
+                                        } ?>
                                     </td>
                                 </tr>
 
