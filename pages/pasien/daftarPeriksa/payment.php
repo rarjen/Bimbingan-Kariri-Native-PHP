@@ -3,7 +3,7 @@ include("../../../koneksi.php");
 
 $id = $_GET['id'];
 
-$query = "SELECT p.id, p.tgl_periksa, p.catatan, p.biaya_periksa, dp.keluhan, d.nama as nama_dokter, p3.nama_poli, dp2.id_obat, o.nama_obat, o.kemasan, o.harga as harga_obat 
+$query = "SELECT p.id, p.tgl_periksa, p.catatan, p.biaya_periksa, p.payment_status, dp.keluhan, d.nama as nama_dokter, p3.nama_poli, dp2.id_obat, o.nama_obat, o.kemasan, o.harga as harga_obat 
 FROM periksa p
 JOIN daftar_poli dp on p.id_daftar_poli = dp.id
 JOIN pasien p2 on dp.id_pasien = p2.id
@@ -79,7 +79,17 @@ $row = mysqli_fetch_assoc($result);
                                             </textarea>
                                         </div>
 
-                                        <input type="submit" name="submit" id="bayarBtn" value="Bayar" class="btn btn-info mt-3">
+                                        <?php
+                                        // Check the payment_status and display buttons accordingly
+                                        if ($row['payment_status'] === 'PAID') {
+                                            echo '<button id="cetakBtn" class="btn btn-success mt-3" onclick="printReceipt()">Cetak</button>';
+                                            echo '<script>document.getElementById("bayarBtn").style.display = "none";</script>';
+                                        } else {
+                                            echo '<input type="submit" name="submit" id="bayarBtn" value="Bayar" class="btn btn-info mt-3">';
+                                            echo '<script>document.getElementById("cetakBtn").style.display = "none";</script>';
+                                        }
+                                        ?>
+
                                     </form>
                                 </div>
                             </tbody>
@@ -90,23 +100,16 @@ $row = mysqli_fetch_assoc($result);
             </div>
         </div>
     </div>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var idValue = <?= json_encode($id); ?>;
-            console.log("ID:", idValue);
 
-            document.getElementById('bayarBtn').addEventListener('click', function(event) {
-                event.preventDefault();
-
-                var confirmPayment = confirm('Anda ingin melakukan pembayaran?');
-
-                if (confirmPayment) {
-                    document.getElementById('editForm').submit();
-                }
-            });
-        });
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script>
+        function printReceipt() {
+            // Add the logic for printing the receipt here
+            // You can use window.print() or any other printing mechanism
+            // For simplicity, a placeholder alert is used
+            alert("Printing Receipt...");
+        }
+    </script>
 </body>
 
 </html>
