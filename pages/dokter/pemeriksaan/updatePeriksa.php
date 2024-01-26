@@ -3,6 +3,7 @@ include("../../../koneksi.php");
 
 $hargaPeriksaDokter = 150000;
 $totalBiayaObat = 0;
+$payment_status = "PENDING";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Ambil nilai dari form
@@ -19,12 +20,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $query = "UPDATE periksa SET 
         tgl_periksa = ?, 
         catatan = ?,
-        biaya_periksa = ?
+        biaya_periksa = ?,
+        payment_status = ?
         WHERE id = ?";
 
     $stmt = mysqli_prepare($mysqli, $query);
 
-    mysqli_stmt_bind_param($stmt, "ssii", $tgl_periksa, $catatan, $biayaPeriksa, $id);
+    mysqli_stmt_bind_param($stmt, "ssisi", $tgl_periksa, $catatan, $biayaPeriksa, $payment_status, $id);
 
     if (mysqli_stmt_execute($stmt)) {
 
