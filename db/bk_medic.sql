@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3308
--- Waktu pembuatan: 27 Jan 2024 pada 01.09
+-- Waktu pembuatan: 27 Jan 2024 pada 03.23
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 7.4.28
 
@@ -136,17 +136,20 @@ CREATE TABLE `jadwal_periksa` (
   `hari` enum('Senin','Selasa','Rabu','Kamis','Jumat','Sabtu') NOT NULL,
   `jam_mulai` time NOT NULL,
   `jam_selesai` time NOT NULL,
-  `isUsed` int(11) NOT NULL DEFAULT 0
+  `isUsed` int(11) NOT NULL DEFAULT 0,
+  `status` enum('AKTIF','TIDAK AKTIF') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `jadwal_periksa`
 --
 
-INSERT INTO `jadwal_periksa` (`id`, `id_dokter`, `hari`, `jam_mulai`, `jam_selesai`, `isUsed`) VALUES
-(1, 8, 'Kamis', '10:00:00', '11:00:00', 1),
-(2, 4, 'Jumat', '10:00:00', '11:00:00', 1),
-(3, 1, 'Senin', '09:00:00', '10:00:00', 1);
+INSERT INTO `jadwal_periksa` (`id`, `id_dokter`, `hari`, `jam_mulai`, `jam_selesai`, `isUsed`, `status`) VALUES
+(1, 8, 'Kamis', '10:00:00', '11:00:00', 1, 'AKTIF'),
+(2, 4, 'Jumat', '10:00:00', '11:00:00', 1, 'AKTIF'),
+(3, 1, 'Senin', '09:00:00', '10:00:00', 1, 'AKTIF'),
+(11, 1, 'Rabu', '19:00:00', '20:00:00', 0, 'AKTIF'),
+(12, 1, 'Selasa', '09:16:00', '10:16:00', 0, 'AKTIF');
 
 -- --------------------------------------------------------
 
@@ -349,7 +352,7 @@ ALTER TABLE `dokter`
 -- AUTO_INCREMENT untuk tabel `jadwal_periksa`
 --
 ALTER TABLE `jadwal_periksa`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT untuk tabel `obat`
