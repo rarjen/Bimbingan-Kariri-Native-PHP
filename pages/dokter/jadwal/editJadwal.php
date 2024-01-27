@@ -24,7 +24,7 @@ $row = mysqli_fetch_assoc($data);
                     <input type="hidden" name="id" value="<?= $row['id']; ?>">
                     <div class="form-group">
                         <label for="hari">Hari</label>
-                        <select class="form-control" id="hari" name="hari" required>
+                        <select class="form-control" id="hari" name="hari" required disabled>
                             <option value="Senin" <?php if ($row['hari'] == 'Senin') echo 'selected'; ?>>Senin</option>
                             <option value="Selasa" <?php if ($row['hari'] == 'Selasa') echo 'selected'; ?>>Selasa</option>
                             <option value="Rabu" <?php if ($row['hari'] == 'Rabu') echo 'selected'; ?>>Rabu</option>
@@ -36,11 +36,18 @@ $row = mysqli_fetch_assoc($data);
                     </div>
                     <div class="form-group">
                         <label for="jam_mulai">Jam Mulai</label>
-                        <input type="time" class="form-control" id="jam_mulai" name="jam_mulai" value="<?= $row['jam_mulai']; ?>" required>
+                        <input type="time" class="form-control" id="jam_mulai" name="jam_mulai" value="<?= $row['jam_mulai']; ?>" required disabled>
                     </div>
                     <div class="form-group">
                         <label for="jam_selesai">Jam Selesai</label>
-                        <input type="time" class="form-control" id="jam_selesai" name="jam_selesai" value="<?= $row['jam_selesai']; ?>" required>
+                        <input type="time" class="form-control" id="jam_selesai" name="jam_selesai" value="<?= $row['jam_selesai']; ?>" required disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="status">status</label>
+                        <select class="form-control" id="status" name="status" required>
+                            <option value="AKTIF" <?php if ($row['status'] == 'AKTIF') echo 'selected'; ?>>AKTIF</option>
+                            <option value="TIDAK AKTIF" <?php if ($row['status'] == 'TIDAK AKTIF') echo 'selected'; ?>>TIDAK AKTIF</option>
+                        </select>
                     </div>
                     <input type="submit" name="submit" value="Update" class="btn btn-primary">
                 </form>

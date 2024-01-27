@@ -71,6 +71,7 @@ $id_dokter = $_SESSION['id'];
                                     <th>Hari</th>
                                     <th>Jam Mulai</th>
                                     <th>Jam Selesai</th>
+                                    <th>Status</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -91,9 +92,9 @@ $id_dokter = $_SESSION['id'];
                                             <td><?php echo $row['hari']; ?></td>
                                             <td><?php echo $row['jam_mulai'] ?></td>
                                             <td><?php echo $row['jam_selesai'] ?></td>
+                                            <td><?php echo $row['status'] ?></td>
                                             <td>
                                                 <button type='button' class='btn btn-sm btn-warning edit-btn' data-obatid='<?php echo $row['id']; ?>'>Edit</button>
-                                                <a href='jadwal/hapusJadwal.php?id=<?php echo $row['id']; ?>' class='btn btn-sm btn-danger' onclick='return confirm("Anda yakin ingin hapus?");'>Hapus</a>
                                             </td>
                                         </tr>
                                     <?php

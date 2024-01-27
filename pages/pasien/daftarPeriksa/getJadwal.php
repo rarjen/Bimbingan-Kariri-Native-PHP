@@ -2,16 +2,17 @@
 include_once("../../../koneksi.php");
 
 $poliId = isset($_GET['poli_id']) ? $_GET['poli_id'] : null;
+$status = "AKTIF";
 
-$queryJadwal = "SELECT jadwal_periksa.id, dokter.nama AS nama_dokter, jadwal_periksa.hari, jadwal_periksa.jam_mulai, jadwal_periksa.jam_selesai
+$queryJadwal = "SELECT jadwal_periksa.id, dokter.nama AS nama_dokter, jadwal_periksa.hari, jadwal_periksa.jam_mulai, jadwal_periksa.jam_selesai, jadwal_periksa.status
 FROM jadwal_periksa
 JOIN dokter ON jadwal_periksa.id_dokter = dokter.id
-WHERE dokter.id_poli = ?";
+WHERE dokter.id_poli = ? AND jadwal_periksa.status = ?";
 
 $stmt = mysqli_prepare($mysqli, $queryJadwal);
 
 // Binding parameter
-mysqli_stmt_bind_param($stmt, "i", $poliId);
+mysqli_stmt_bind_param($stmt, "is", $poliId, $status);
 
 // Eksekusi query
 mysqli_stmt_execute($stmt);

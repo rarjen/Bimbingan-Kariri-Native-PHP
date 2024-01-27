@@ -4,9 +4,7 @@ include("../../../koneksi.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $id = $_POST["id"];
-    $hari = $_POST["hari"];
-    $jam_mulai = $_POST["jam_mulai"];
-    $jam_selesai = $_POST["jam_selesai"];
+    $status = $_POST["status"];
 
     $queryCheckExist = "SELECT isUsed FROM jadwal_periksa WHERE id = '$id'";
     $resultCheckExist = mysqli_query($mysqli, $queryCheckExist);
@@ -19,14 +17,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "<meta http-equiv='refresh' content='0; url=../../../index.php'>";
         } else {
             $query = "UPDATE jadwal_periksa SET
-                        hari = ?,
-                        jam_mulai = ?,
-                        jam_selesai = ?
+                        status = ?
                         WHERE id = ?";
 
             $stmt = mysqli_prepare($mysqli, $query);
 
-            mysqli_stmt_bind_param($stmt, "sssi", $hari, $jam_mulai, $jam_selesai, $id);
+            mysqli_stmt_bind_param($stmt, "si", $status, $id);
 
             // Eksekusi query
             if (mysqli_stmt_execute($stmt)) {
