@@ -16,6 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id_jadwal = $_POST["jadwal"];
     $keluhan = $_POST["keluhan"];
     $no_antrian = getLatestQueue($mysqli, $id_jadwal) + 1;
+    $isUsed = 1;
 
     // Query untuk menambahkan data dokter ke dalam tabel
     $query = "INSERT INTO daftar_poli (id_pasien, id_jadwal, keluhan, no_antrian) VALUES (?, ?, ?, ?)";
@@ -37,6 +38,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Menyimpan data ke dalam tabel periksa
         mysqli_stmt_bind_param($stmtPeriksa, "i", $id_daftar_poli);
+
+        $queryUpdate = "UPDATE jadwal_periksa SET
+        isUsed = ?
+        WHERE id = $id_jadwal";
+
+        $stmtUpdate = mysqli_prepare($mysqli, $queryUpdate);
+
+        // Update isUsed
+        mysqli_stmt_bind_param($stmtUpdate, "i", $isUsed);
 
         // Mengganti nilai $ dengan nilai sesuai kebutuhan Anda
         // Eksekusi query periksa
